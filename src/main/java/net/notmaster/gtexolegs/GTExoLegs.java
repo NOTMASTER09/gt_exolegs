@@ -28,6 +28,7 @@ public class GTExoLegs {
     public GTExoLegs() {
         GTExoLegsCreativeTabs.init();
         GTExoLegs.init();
+        REGISTRATE.registerRegistrate();
         MinecraftForge.EVENT_BUS.register(this);
     }
 

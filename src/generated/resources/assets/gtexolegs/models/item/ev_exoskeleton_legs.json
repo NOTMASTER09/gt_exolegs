@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gtexolegs:item/ev_exoskeleton_legs"
+  }
+}

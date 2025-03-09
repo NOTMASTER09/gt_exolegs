@@ -19,6 +19,7 @@ public class GTExoLegsItems {
     public static final ItemEntry<ItemExoskeletonLegs> LV_EXOSKELETON_LEGS = REGISTRATE
             .item("lv_exoskeleton_legs", p -> ItemExoskeletonLegs.create(p, GTValues.LV))
             .lang("LV Exoskeleton Legs")
+            .tag(GTExoLegs.EXOLEGS_TAG)
             .register();
 
     @SuppressWarnings("unused")
