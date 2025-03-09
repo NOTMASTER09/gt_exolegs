@@ -12,7 +12,7 @@ import static net.notmaster.gtexolegs.GTExoLegs.REGISTRATE;
 public class GTExoLegsItems {
 
     static {
-        REGISTRATE.creativeModeTab(() -> GTExoLegs.EXOLEGS_CREATIVE_TAB);
+        REGISTRATE.creativeModeTab(() -> GTExoLegsCreativeTabs.EXOLEGS_CREATIVE_TAB);
     }
 
     @SuppressWarnings("unused")
