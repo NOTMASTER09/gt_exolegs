@@ -1,8 +1,9 @@
 package net.notmaster.gtexolegs.common.item;
 
 import net.minecraft.world.item.Item;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class ItemExoskeletonLegs extends Item {
+public class ItemExoskeletonLegs extends Item implements ICurioItem {
 
     protected int tier;
 

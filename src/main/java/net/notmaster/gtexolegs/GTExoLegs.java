@@ -8,6 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.notmaster.gtexolegs.common.data.ExoLegsDataGen;
 import net.notmaster.gtexolegs.common.data.GTExoLegsCreativeTabs;
 import net.notmaster.gtexolegs.common.data.GTExoLegsItems;
 
@@ -22,13 +23,13 @@ public class GTExoLegs {
     public static GTRegistrate REGISTRATE = GTRegistrate.create(GTExoLegs.MOD_ID);
 
 
-    public static final TagKey<Item> EXOLEGS_TAG = TagKey.create(BuiltInRegistries.ITEM.key(),
-            GTExoLegs.id("exoskeleton_legs"));
+    public static final TagKey<Item> EXOLEGS_TAG = TagKey.create(BuiltInRegistries.ITEM.key(), new ResourceLocation("curios", "exoskeleton_legs"));
 
     public GTExoLegs() {
         GTExoLegsCreativeTabs.init();
         GTExoLegs.init();
         REGISTRATE.registerRegistrate();
+        ExoLegsDataGen.init();
         MinecraftForge.EVENT_BUS.register(this);
     }
 
