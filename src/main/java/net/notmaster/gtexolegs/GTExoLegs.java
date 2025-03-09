@@ -10,6 +10,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.notmaster.gtexolegs.common.data.GTExoLegsCreativeTabs;
 import net.notmaster.gtexolegs.common.data.GTExoLegsItems;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -23,17 +24,12 @@ public class GTExoLegs {
     public static final Logger LOGGER = LogManager.getLogger();
     public static GTRegistrate REGISTRATE = GTRegistrate.create(GTExoLegs.MOD_ID);
 
-    public static RegistryEntry<CreativeModeTab> EXOLEGS_CREATIVE_TAB = REGISTRATE.defaultCreativeTab(GTExoLegs.MOD_ID,
-            builder -> builder
-                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(GTExoLegs.MOD_ID, REGISTRATE))
-                    .title(REGISTRATE.addLang("itemGroup", GTExoLegs.id("creative_tab"), "GT Exoskeleton Legs"))
-                    .icon(GTExoLegsItems.LV_EXOSKELETON_LEGS::asStack)
-                    .build())
-            .register();
+
     public static final TagKey<Item> EXOLEGS_TAG = TagKey.create(BuiltInRegistries.ITEM.key(),
             GTExoLegs.id("exoskeleton_legs"));
 
     public GTExoLegs() {
+        GTExoLegsCreativeTabs.init();
         GTExoLegs.init();
         MinecraftForge.EVENT_BUS.register(this);
     }
