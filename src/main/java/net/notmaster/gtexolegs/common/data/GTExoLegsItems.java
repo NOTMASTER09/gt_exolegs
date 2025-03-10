@@ -50,6 +50,5 @@ public class GTExoLegsItems {
             .tag(GTExoLegs.EXOLEGS_TAG)
             .register();
 
-    public static void init() {
-    }
+    public static void init() {}
 }

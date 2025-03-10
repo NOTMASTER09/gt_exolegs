@@ -1,4 +1,5 @@
 {
+  "config.gtexolegs.option.stepHeightModifiers": "stepHeightModifiers",
   "curios.identifier.exoskeleton_legs": "Exoskeleton Legs",
   "item.gtexolegs.ev_exoskeleton_legs": "EV Exoskeleton Legs",
   "item.gtexolegs.hv_exoskeleton_legs": "HV Exoskeleton Legs",
