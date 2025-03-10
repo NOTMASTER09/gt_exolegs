@@ -29,20 +29,20 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
         this.tier = tier;
     }
 
-    private void setAttributeModifier(LivingEntity entity, Attribute attribute, AttributeModifier modifier){
+    private void setAttributeModifier(LivingEntity entity, Attribute attribute, AttributeModifier modifier) {
         AttributeInstance instance = entity.getAttribute(attribute);
-        if(instance != null){
-            if(instance.getModifier(modifier.getId()) != null){
+        if (instance != null) {
+            if (instance.getModifier(modifier.getId()) != null) {
                 instance.removeModifier(modifier.getId());
             }
             instance.addTransientModifier(modifier);
         }
     }
 
-    private void removeAttributeModifier(LivingEntity entity, Attribute attribute, UUID id){
+    private void removeAttributeModifier(LivingEntity entity, Attribute attribute, UUID id) {
         AttributeInstance instance = entity.getAttribute(attribute);
-        if(instance != null){
-            if(instance.getModifier(id) != null){
+        if (instance != null) {
+            if (instance.getModifier(id) != null) {
                 instance.removeModifier(id);
             }
         }
@@ -53,23 +53,21 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
         setAttributeModifier(slotContext.entity(), Attributes.MOVEMENT_SPEED, new AttributeModifier(
                 MOVEMENT_SPEED_MULTIPLIER_UUID,
                 "Exoskeleton Legs Movement Speed Multiplier",
-                GTExoLegsConfig.INSTANCE.movementSpeedMultipliers[tier-1],
-                AttributeModifier.Operation.MULTIPLY_TOTAL
-        ));
+                GTExoLegsConfig.INSTANCE.movementSpeedMultipliers[tier - 1],
+                AttributeModifier.Operation.MULTIPLY_TOTAL));
     }
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if(!(slotContext.entity() instanceof Player player)) return;
-        if(player.isShiftKeyDown()){
+        if (!(slotContext.entity() instanceof Player player)) return;
+        if (player.isShiftKeyDown()) {
             removeAttributeModifier(player, STEP_HEIGHT_ADDITION, STEP_HEIGHT_MODIFIER_UUID);
         } else {
             setAttributeModifier(player, STEP_HEIGHT_ADDITION, new AttributeModifier(
                     STEP_HEIGHT_MODIFIER_UUID,
                     "Exoskeleton Legs Step Height Boost",
-                    GTExoLegsConfig.INSTANCE.stepHeightModifiers[tier-1],
-                    AttributeModifier.Operation.ADDITION
-            ));
+                    GTExoLegsConfig.INSTANCE.stepHeightModifiers[tier - 1],
+                    AttributeModifier.Operation.ADDITION));
         }
     }
 
