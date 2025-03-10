@@ -4,6 +4,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class ItemExoskeletonLegs extends Item implements ICurioItem {
 
     private static final UUID STEP_HEIGHT_MODIFIER_UUID = UUID.fromString("b8a6abba-b241-4795-9ff9-00d98b52ec04");
+    private static final UUID MOVEMENT_SPEED_MULTIPLIER_UUID = UUID.fromString("0687d81a-0ef8-4c45-9a5a-a1e6a13719a9");
     private static final Attribute STEP_HEIGHT_ADDITION = ForgeMod.STEP_HEIGHT_ADDITION.get();
 
     private final int tier;
@@ -47,6 +49,16 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
     }
 
     @Override
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        setAttributeModifier(slotContext.entity(), Attributes.MOVEMENT_SPEED, new AttributeModifier(
+                MOVEMENT_SPEED_MULTIPLIER_UUID,
+                "Exoskeleton Legs Movement Speed Multiplier",
+                GTExoLegsConfig.INSTANCE.movementSpeedMultipliers[tier-1],
+                AttributeModifier.Operation.MULTIPLY_TOTAL
+        ));
+    }
+
+    @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if(!(slotContext.entity() instanceof Player player)) return;
         if(player.isShiftKeyDown()){
@@ -64,6 +76,7 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         removeAttributeModifier(slotContext.entity(), STEP_HEIGHT_ADDITION, STEP_HEIGHT_MODIFIER_UUID);
+        removeAttributeModifier(slotContext.entity(), Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_MULTIPLIER_UUID);
     }
 
     public static ItemExoskeletonLegs create(Item.Properties properties, int tier) {

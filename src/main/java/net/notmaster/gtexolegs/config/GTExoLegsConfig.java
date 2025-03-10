@@ -27,4 +27,10 @@ public class GTExoLegsConfig {
     @Configurable.FixedSize
     @Configurable.DecimalRange(min = 0)
     public double[] stepHeightModifiers = { 0.4, 0.4, 0.4, 0.4, 0.4 };
+
+    @Configurable
+    @Configurable.Comment({"Movement speed multiplier per tier", "Must be >= 0"})
+    @Configurable.FixedSize
+    @Configurable.DecimalRange(min = 0)
+    public double[] movementSpeedMultipliers = {0.2, 0.4, 0.6, 0.8, 1.0};
 }
