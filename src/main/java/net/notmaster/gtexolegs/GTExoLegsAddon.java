@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.notmaster.gtexolegs.common.data.recipe.generated.GTExoLegsRecipes;
 
 import java.util.function.Consumer;
 
@@ -32,7 +33,7 @@ public class GTExoLegsAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        // CustomRecipes.init(provider);
+        GTExoLegsRecipes.init(provider);
     }
 
     // If you have custom ingredient types, uncomment this & change to match your capability.
