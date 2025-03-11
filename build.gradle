@@ -3,6 +3,7 @@ plugins {
     id "maven-publish"
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
     id 'com.diffplug.spotless' version '7.0.2'
 }
 
@@ -102,11 +103,24 @@ minecraft {
     }
 }
 
+mixin {
+  add sourceSets.main, 'gtexolegs.refmap.json'
+  config 'gtexolegs.mixins.json'
+}
 
 apply from: "$rootDir/gradle/scripts/spotless.gradle"
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // Mixin
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    // Mixin Extras
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
+        jarJar.ranged(it, "[0.4.1,)")
+    }
 
     // JEI, EMI, Jade
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")

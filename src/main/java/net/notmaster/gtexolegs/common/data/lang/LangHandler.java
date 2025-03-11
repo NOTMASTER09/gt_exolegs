@@ -8,5 +8,8 @@ public class LangHandler {
         ConfigurationLang.init(provider);
 
         provider.add("curios.identifier.exoskeleton_legs", "Exoskeleton Legs");
+
+        provider.add("gtexolegs.tooltip.jump_boost.enabled", "§aJump Boost Enabled");
+        provider.add("gtexolegs.tooltip.jump_boost.disabled", "§cJump Boost Disabled");
     }
 }

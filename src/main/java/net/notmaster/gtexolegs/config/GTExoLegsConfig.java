@@ -33,4 +33,14 @@ public class GTExoLegsConfig {
     @Configurable.FixedSize
     @Configurable.DecimalRange(min = 0)
     public double[] movementSpeedMultipliers = { 0.2, 0.4, 0.6, 0.8, 1.0 };
+
+    @Configurable
+    @Configurable.Comment({ "Jump boost modifier per tier", "Must be >= 0" })
+    @Configurable.FixedSize
+    @Configurable.DecimalRange(min = 0)
+    public double[] jumpBoostModifiers = { 0.0, 0.1, 0.2, 0.3, 0.4 };
+
+    @Configurable
+    @Configurable.Comment({ "Enable or disable jump boost mechanic entirely" })
+    public boolean enableJumpBoost = true;
 }

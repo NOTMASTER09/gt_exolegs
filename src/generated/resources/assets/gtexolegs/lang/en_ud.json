@@ -1,7 +1,11 @@
 {
+  "config.gtexolegs.option.enableJumpBoost": "ʇsooᗺdɯnſǝןqɐuǝ",
+  "config.gtexolegs.option.jumpBoostModifiers": "sɹǝıɟıpoWʇsooᗺdɯnظ",
   "config.gtexolegs.option.movementSpeedMultipliers": "sɹǝıןdıʇןnWpǝǝdSʇuǝɯǝʌoɯ",
   "config.gtexolegs.option.stepHeightModifiers": "sɹǝıɟıpoWʇɥbıǝHdǝʇs",
   "curios.identifier.exoskeleton_legs": "sbǝꞀ uoʇǝןǝʞsoxƎ",
+  "gtexolegs.tooltip.jump_boost.disabled": "pǝןqɐsıᗡ ʇsooᗺ dɯnſɔ§",
+  "gtexolegs.tooltip.jump_boost.enabled": "pǝןqɐuƎ ʇsooᗺ dɯnſɐ§",
   "item.gtexolegs.ev_exoskeleton_legs": "sbǝꞀ uoʇǝןǝʞsoxƎ ΛƎ",
   "item.gtexolegs.hv_exoskeleton_legs": "sbǝꞀ uoʇǝןǝʞsoxƎ ΛH",
   "item.gtexolegs.iv_exoskeleton_legs": "sbǝꞀ uoʇǝןǝʞsoxƎ ΛI",
