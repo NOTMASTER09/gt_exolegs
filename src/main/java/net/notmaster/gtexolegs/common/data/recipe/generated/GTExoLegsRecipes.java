@@ -1,13 +1,12 @@
 package net.notmaster.gtexolegs.common.data.recipe.generated;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.gregtechceu.gtceu.data.recipe.generated.ToolRecipeHandler;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -27,6 +26,7 @@ import java.util.function.Consumer;
 public class GTExoLegsRecipes {
 
     public static HashMap<Integer, ItemEntry<? extends Item>> exoskeletonItems = new HashMap<>();
+    public static HashMap<Integer, ItemEntry<? extends Item>> motors = new HashMap<>();
     public static HashMap<Integer, ItemEntry<? extends Item>> pistonItems = new HashMap<>();
     public static HashMap<Integer, TagKey<? extends Item>> circuitItems = new HashMap<>();
 
@@ -41,6 +41,12 @@ public class GTExoLegsRecipes {
         exoskeletonItems.put(GTValues.HV, GTExoLegsItems.HV_EXOSKELETON_LEGS);
         exoskeletonItems.put(GTValues.EV, GTExoLegsItems.EV_EXOSKELETON_LEGS);
         exoskeletonItems.put(GTValues.IV, GTExoLegsItems.IV_EXOSKELETON_LEGS);
+
+        motors.put(GTValues.LV, GTItems.ELECTRIC_MOTOR_LV);
+        motors.put(GTValues.MV, GTItems.ELECTRIC_MOTOR_MV);
+        motors.put(GTValues.HV, GTItems.ELECTRIC_MOTOR_HV);
+        motors.put(GTValues.EV, GTItems.ELECTRIC_MOTOR_EV);
+        motors.put(GTValues.IV, GTItems.ELECTRIC_MOTOR_IV);
 
         pistonItems.put(GTValues.LV, GTItems.ELECTRIC_PISTON_LV);
         pistonItems.put(GTValues.MV, GTItems.ELECTRIC_PISTON_MV);
@@ -65,11 +71,11 @@ public class GTExoLegsRecipes {
                     "MDM",
                     "PCP",
                     "L L",
-                    'M', ToolRecipeHandler.motorItems.get(tier),
+                    'M', motors.get(tier),
                     'P', pistonItems.get(tier),
                     'C', circuitItems.get(tier),
-                    'L', new UnificationEntry(TagPrefix.plate, GTMaterials.TinAlloy),
-                    'D', new UnificationEntry(TagPrefix.plateDouble, GTMaterials.TinAlloy));
+                    'L', new MaterialEntry(TagPrefix.plate, GTMaterials.TinAlloy),
+                    'D', new MaterialEntry(TagPrefix.plateDouble, GTMaterials.TinAlloy));
         }
     }
 }
