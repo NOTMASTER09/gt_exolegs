@@ -1,0 +1,15 @@
+{
+  "config.gtexolegs.option.enableJumpBoost": "跳躍力強化を有効",
+  "config.gtexolegs.option.jumpBoostModifiers": "跳躍力強化モディファイア",
+  "config.gtexolegs.option.movementSpeedMultipliers": "移動速度乗数",
+  "config.gtexolegs.option.stepHeightModifiers": "段の高さ変更子",
+  "curios.identifier.exoskeleton_legs": "外骨格補助脚",
+  "gtexolegs.tooltip.jump_boost.disabled": "§c跳躍力強化 有効",
+  "gtexolegs.tooltip.jump_boost.enabled": "§a跳躍力強化 無効",
+  "item.gtexolegs.ev_exoskeleton_legs": "EV外骨格補助脚",
+  "item.gtexolegs.hv_exoskeleton_legs": "HV外骨格補助脚",
+  "item.gtexolegs.iv_exoskeleton_legs": "IV外骨格補助脚",
+  "item.gtexolegs.lv_exoskeleton_legs": "LV外骨格補助脚",
+  "item.gtexolegs.mv_exoskeleton_legs": "MV外骨格補助脚",
+  "itemGroup.gtexolegs.creative_tab": "GT Exoskeleton Legs"
+}
