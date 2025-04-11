@@ -1,5 +1,6 @@
 package net.notmaster.gtexolegs.common.item;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -29,9 +30,9 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
     private static final UUID STEP_HEIGHT_MODIFIER_UUID = UUID.fromString("b8a6abba-b241-4795-9ff9-00d98b52ec04");
     private static final UUID MOVEMENT_SPEED_MULTIPLIER_UUID = UUID.fromString("0687d81a-0ef8-4c45-9a5a-a1e6a13719a9");
     private static final UUID JUMP_BOOST_MODIFIER_UUID = UUID.fromString("dfc1fb10-e6a6-4598-902c-8f22b0195b38");
+    private static final String JUMP_BOOST_ENABLED_TAG = "jumpBoostEnabled";
 
     private final int tier;
-    private boolean jumpBoostEnabled = true;
 
     protected ItemExoskeletonLegs(Properties properties, int tier) {
         super(properties);
@@ -74,20 +75,30 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
         }
     }
 
-    private boolean toggleJumpBoost(LivingEntity entity) {
-        if (jumpBoostEnabled) {
-            removeJumpBoost(entity);
-        } else {
-            setJumpBoost(entity);
+    private boolean isJumpBoostEnabled(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
         }
-        jumpBoostEnabled = !jumpBoostEnabled;
-        return jumpBoostEnabled;
+        CompoundTag tag = stack.getTag();
+        if (tag == null) {
+            return false;
+        }
+        if (tag.contains(JUMP_BOOST_ENABLED_TAG)) {
+            return tag.getBoolean(JUMP_BOOST_ENABLED_TAG);
+        }
+        return false;
+    }
+
+    private boolean toggleJumpBoost(ItemStack stack) {
+        boolean isEnabled = isJumpBoostEnabled(stack);
+        stack.getOrCreateTag().putBoolean(JUMP_BOOST_ENABLED_TAG, !isEnabled);
+        return !isEnabled;
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         if (!level.isClientSide() && player.isShiftKeyDown() && GTExoLegsConfig.INSTANCE.enableJumpBoost) {
-            player.displayClientMessage(Component.translatable(toggleJumpBoost(player) ?
+            player.displayClientMessage(Component.translatable(toggleJumpBoost(player.getItemInHand(usedHand)) ?
                     "gtexolegs.tooltip.jump_boost.enabled" : "gtexolegs.tooltip.jump_boost.disabled"), true);
         }
         return InteractionResultHolder.pass(player.getItemInHand(usedHand));
@@ -97,7 +108,7 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip,
                                 TooltipFlag isAdvanced) {
         if (GTExoLegsConfig.INSTANCE.enableJumpBoost) {
-            tooltip.add(Component.translatable(jumpBoostEnabled ? "gtexolegs.tooltip.jump_boost.enabled" :
+            tooltip.add(Component.translatable(isJumpBoostEnabled(stack) ? "gtexolegs.tooltip.jump_boost.enabled" :
                     "gtexolegs.tooltip.jump_boost.disabled"));
         }
         super.appendHoverText(stack, level, tooltip, isAdvanced);
@@ -110,7 +121,7 @@ public class ItemExoskeletonLegs extends Item implements ICurioItem {
                 "Exoskeleton Legs Movement Speed Multiplier",
                 GTExoLegsConfig.INSTANCE.movementSpeedMultipliers[tier - 1],
                 AttributeModifier.Operation.MULTIPLY_TOTAL));
-        if (jumpBoostEnabled) {
+        if (isJumpBoostEnabled(stack)) {
             setJumpBoost(slotContext.entity());
         }
     }
